@@ -2,6 +2,7 @@ import {React, useState} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SignInScreen = () => {
   const [username, setUsername] = useState('');
@@ -60,6 +61,7 @@ const SignInScreen = () => {
         <CustomButton 
           text="Forgot password?"
           onPress={onForgotPasswordPressed}
+          bgColor="white"
           type="TERTIARY"
         />
 
@@ -68,7 +70,7 @@ const SignInScreen = () => {
           onPress={onSignInFacebook}
           bgColor="#E7EAF4"
           fgColor="#4765A9"
-        />
+        ></CustomButton>
         <CustomButton
           text="Sign In with Google"
           onPress={onSignInGoogle}
@@ -96,6 +98,7 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     padding: 20,
+    backgroundColor: '#90EE90'
   },
   logo: {
     width: "70%",

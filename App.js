@@ -8,7 +8,7 @@ import Home from "./screens/home"
 import Search from "./screens/search"
 import Profile from "./screens/profile"
 import SignInScreen from "./screens/login"
-
+import Quiz from "./screens/quiz"
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -21,12 +21,12 @@ function MyTabs() {
         }
       }}
     >
-      <Tab.Screen name="Login" component={SignInScreen} 
-        options={{
-          tabBarIcon: ({color, focused}) => (
-            <Icon name="at" size={26} color="#52575D"></Icon>
-          )
-        }}
+      <Tab.Screen name="Quiz" component={Quiz} 
+          options={{
+            tabBarIcon: ({color, focused}) => (
+              <Icon name="at" size={26} color="#52575D"></Icon>
+            )
+          }}
       />
 
       <Tab.Screen name="Home" component={Home} 
@@ -52,6 +52,7 @@ function MyTabs() {
           )
         }}
       />
+
     </Tab.Navigator>
   );
 }
