@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     padding: 20,
+    backgroundColor: '#90EE90'
   },
   profileImage: {
     width: 200,
