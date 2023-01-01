@@ -75,7 +75,7 @@ const Quiz = () => {
 				<Text style = {{
 					color:'black',
 					fontSize: 30,
-				}}> {allQuestions[currentQuestionIndex]?.question}</Text>
+				}}> {allQuestions[currentQuestionIndex]?.question} </Text>
 			</View>
 		)
 	}

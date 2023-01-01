@@ -1,7 +1,6 @@
 import React from "react";
 import { Text, View, SafeAreaView, ImageBackground, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 
-
 const Home = () => {
     return (
         <SafeAreaView style={{flex: 1}}>
@@ -10,7 +9,7 @@ const Home = () => {
                 style={{
                     flex: 1,
                     justifyContent: "center"
-                }}
+                }}A
                 resizeMode={'cover'}
             >
                 <ScrollView>
@@ -54,25 +53,42 @@ const Home = () => {
                         </View>
                     </View>
 
-                    <TouchableOpacity
-                        style={{
-                            borderWidth: 3, 
-                            borderColor: "green",
-                            backgroundColor: "#0096FF",
-                            height: 60, borderRadius: 20,
-                            flexDirection: 'row',
-                            alignItems: 'center', 
-                            justifyContent: 'space-between',
-                            paddingHorizontal: 20,
-                            marginVertical: 10,
-                            margin: 20,
-                    }}>
+                    <TouchableOpacity style={styles.button}>
                         <Text style={{fontSize: 20, color: 'white' }}>
-                            Grammar
+                            Intro to Grammar
                         </Text>
                     </TouchableOpacity>
 
-                    
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={{fontSize: 20, color: 'white' }}>
+                            Intro to Grammar
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={{fontSize: 20, color: 'white' }}>
+                            Intro to Grammar
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={{fontSize: 20, color: 'white' }}>
+                            Intro to Grammar
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={{fontSize: 20, color: 'white' }}>
+                            Intro to Grammar
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={{fontSize: 20, color: 'white' }}>
+                            Intro to Grammar
+                        </Text>
+                    </TouchableOpacity>
+
                 </ScrollView>
             </ImageBackground>
         </SafeAreaView>
@@ -82,5 +98,16 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-    
+  button: {
+    borderWidth: 3, 
+    borderColor: "green",
+    backgroundColor: "#0096FF",
+    height: 60, borderRadius: 20,
+    flexDirection: 'row',
+    alignItems: 'center', 
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    marginVertical: 10,
+    margin: 20,
+  },
 });

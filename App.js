@@ -9,6 +9,8 @@ import Search from "./screens/search"
 import Profile from "./screens/profile"
 import SignInScreen from "./screens/login"
 import Quiz from "./screens/quiz"
+import CourseScreen from "./screens/lesson"
+
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -21,7 +23,7 @@ function MyTabs() {
         }
       }}
     >
-      <Tab.Screen name="Quiz" component={Quiz} 
+      <Tab.Screen name="Course" component={CourseScreen} 
           options={{
             tabBarIcon: ({color, focused}) => (
               <Icon name="at" size={26} color="#52575D"></Icon>
@@ -37,13 +39,13 @@ function MyTabs() {
         }}
       />
 
-      <Tab.Screen name="Search" component={Search} 
+      {/*<Tab.Screen name="Search" component={Search} 
         options={{
           tabBarIcon: ({color, focused}) => (
             <Icon name="search" size={26} color="#52575D"></Icon>
           )
         }}
-      />
+      />*/}
 
       <Tab.Screen name="Profile" component={Profile} 
         options={{
@@ -59,9 +61,9 @@ function MyTabs() {
 
 const App = () => {
   return (
-  <NavigationContainer>
-    <MyTabs />
-  </NavigationContainer>
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
   );
 }
 
