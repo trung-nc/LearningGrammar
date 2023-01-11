@@ -3,7 +3,7 @@
 import { React, useState } from 'react'
 import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, ImageBackground } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import data from '../data/QuizData'
+import data from '../data/quizData'
 
 const Quiz = () => {
 
@@ -75,7 +75,7 @@ const Quiz = () => {
 				<Text style = {{
 					color:'black',
 					fontSize: 30,
-				}}> {allQuestions[currentQuestionIndex]?.question}</Text>
+				}}> {allQuestions[currentQuestionIndex]?.question} </Text>
 			</View>
 		)
 	}
@@ -148,7 +148,7 @@ const Quiz = () => {
 				<TouchableOpacity 
 					onPress={handleNext}
 					style={{
-						marginTop: 20, width: '100%', backgroundColor: "#4169E1", padding: 20, borderRadius: 5
+						marginTop: 20, width: '100%', backgroundColor: "#4169E1", padding: 20, borderRadius: 10
 					}}
 				>
 					<Text style={{fontSize: 20, color:'white', textAlign: 'center'}}>Next</Text>
@@ -162,7 +162,7 @@ const Quiz = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<ImageBackground
-                source={require('../Image/bg.jpg')}
+                source={require('../images/cat.png')}
                 style={{
                     flex: 1,
 	 					justifyContent: "center"
@@ -183,6 +183,8 @@ const Quiz = () => {
 
 					{/*Question */}
 					{renderQuestion()}
+
+					<View style={{paddingTop: 25}}></View>
 
 					{/*Option*/}
 					{renderOption()}
