@@ -1,13 +1,13 @@
 export default data = [
     {
-        question: "Hello, what ______ your name?",
-        options: ["is","are","am","be"],
-        correct_option: "is"
+        question: "What’s the biggest planet in our solar system?",
+        options: ["Jupiter","Saturn","Neptune","Mercury"],
+        correct_option: "Jupiter"
     },
     {
-        question: " ______ name is John. And my ______ is Johnson.",
-        options: ["Your / surname","My / surname"," I / surname", "I / name"],
-        correct_option: "My / surname"
+        question: "What attraction in India is one of the famus in the world?",
+        options: ["Chand Minar","Taj Mahal","Stadium", "Dalhousie Square"],
+        correct_option: "Taj Mahal"
     },
     {
         question: "What land animal can open its mouth the widest?",
@@ -23,10 +23,5 @@ export default data = [
         question: "What is the only flying mammal?",
         options: ["The bat","The flying squirrel","The bald eagle","The colugo"],
         correct_option: "The bat"
-    },
-    {
-        question: "Where ______ you ______ ?",
-        options: ["is / from","are / in","are / is","are / from"],
-        correct_option: "are / from"
     }
 ]

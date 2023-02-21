@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, ImageBackground, StyleSheet, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import SQLite from 'react-native-sqlite-storage';
+import Header from '../components/Header';
 
-const Home = ({ navigation }) => {
+const QuizList = ({ navigation }) => {
   const [tables, setTables] = useState([]);
 
   useEffect(() => {
@@ -34,34 +35,20 @@ const Home = ({ navigation }) => {
     });
   }, []);
 
-  const renderButton = ({ item, index }) => (
-    <TouchableOpacity style={styles.button} onPress={() => handlePress(item)}>
-      <Text style = {{fontWeight: 'bold', fontSize: 16, color:'white'}}>{index + 1}. {item.mean}</Text>
-    </TouchableOpacity>
-  );
 
-  const handlePress = (item) => {
-    if (item.is_parent == 1) {
-      navigation.navigate('SubScreen', { bigLesson: item });
-    } else {
-      navigation.navigate('LessonScreen', { lesson: item });
-    }
-  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
-        source={require('../images/home.png')}
-        style={{
-          paddingBottom: 20
-        }}
+        source={require('../images/cat.png')}
         resizeMode={'cover'}
       >
-        <View style={{paddingBottom: 482}}>
+        <View>
           <View style={{
+            flex: 1,
             width:"100%",
             alignItems:"flex-end",
-            paddingHorizontal:20
+            paddingHorizontal: 20,
           }}>
            
           </View>
@@ -72,6 +59,7 @@ const Home = ({ navigation }) => {
               fontFamily:"Bold",
               color:"#FFF",
               width: 310,
+              paddingBottom: 20,
             }}>
               Have a good day, My friends
             </Text>
@@ -88,28 +76,37 @@ const Home = ({ navigation }) => {
             <View>
               <Text style={{
                 color:"#345c74",
-                fontSize:20,
+                fontSize:18,
                 fontFamily:"Bold",
                 paddingRight:100,
               }}>
-                Danh sách bài học
+                Danh sách bài kiểm tra
               </Text>
-
             </View>
           </View>
 
-          <FlatList
-            data={tables}
-            renderItem={renderButton}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          <View style={{paddingTop: 20, paddingBottom: 100,}}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Quiz', { level: 'Elementary' })}>
+              <Text style = {{fontWeight: 'bold', fontSize: 16, color:'white'}}>Elementary level</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Quiz', { level: 'Important Topics' })}>
+              <Text style = {{fontWeight: 'bold', fontSize: 16, color:'white'}}>Important Topics level</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Quiz', { level: 'Intermediate' })}>
+              <Text style = {{fontWeight: 'bold', fontSize: 16, color:'white'}}>Intermediate level</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Quiz', { level: 'Upper Intermediate' })}>
+              <Text style = {{fontWeight: 'bold', fontSize: 16, color:'white'}}>Upper Intermediate level</Text>
+            </TouchableOpacity>
+          </View>
+
         </View>
       </ImageBackground>
     </SafeAreaView>
   );
 }
 
-export default Home;
+export default QuizList;
 
 const styles = StyleSheet.create({
   button: {
