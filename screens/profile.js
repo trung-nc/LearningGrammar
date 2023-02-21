@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView, useWindowDimensions, ImageBa
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomButton from '../components/CustomButton';
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
   const { height } = useWindowDimensions();
 
   const onSavedCourse = () => {
@@ -15,73 +15,59 @@ const Profile = () => {
   }
 
   const onAboutUs = () => {
-    console.warn("onAboutUs");
+    navigation.navigate('AboutUs')
+    console.log("onAboutUs");
   }
 
   const onSignOut = () => {
-    console.warn("onSignOut");
+    navigation.navigate('LoginScreen');
+    console.log("onSignOut");
   }
 
-  return (
-      <ImageBackground
-        source={require('../images/home.png')}
-        style={{
-            flex: 1,
-            justifyContent: "center"
-        }}
-        resizeMode={'cover'}
-      >
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.root}>
-            <View style={[styles.profileImage, {marginTop: 20}]}>
-              <Image 
-                source={require("../images/avatar.png")}
-                style={[styles.logo, { height: height * 0.3}]}
-                resizeMode="contain"
-              />
-            </View>
-          
-            <View style={styles.infoContainer}>
-              <Text style={{ color: "black", fontWeight: "200", fontSize: 36 }}>Guest</Text>
-              <Text style={{ color: "black", fontSize: 14, alignSelf: "center" }}>username</Text>
-            </View>
-            
+  return ( 
+    <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'white'}}>
+      <View style={styles.root}>
+        <View style={{ marginTop: 30 }}>
+          <Image 
+            source={require("../images/avatar1.jpg")}
+            style={[styles.profileImage, { height: height * 0.25, borderColor: 'green', overflow: 'hidden', borderWidth: 3 }]}
+            resizeMode="contain"
+          />
+        </View>
+      
+        <View style={styles.infoContainer}>
+          <Text style={{ color: "black", fontWeight: "200", fontSize: 36 }}>Username</Text>
+          <Text style={{ color: "black", fontSize: 14, alignSelf: "center" }}>username</Text>
+        </View>
+        
 
-            <View style={[styles.infoContainer, {marginTop: 22}]}>
-              <Text style={{ color: "black", fontSize: 14, fontWeight: "bold", }}>GENERAL</Text>
-            </View>
+        <View style={[styles.infoContainer, {marginTop: 22}]}>
+          <Text style={{ color: "black", fontSize: 14, fontWeight: "bold", }}>GENERAL</Text>
+        </View>
 
-            <CustomButton 
-              text="Saved courses"
-              onPress={onSavedCourse}
-              // type="TERTIARY"
-            />
+        <CustomButton 
+          text="My Achivements"
+          onPress={onAchievements}
+          // type="TERTIARY"
+        />
 
-            <CustomButton 
-              text="My Achivements"
-              onPress={onAchievements}
-              // type="TERTIARY"
-            />
+        <View style={styles.infoContainer}>
+          <Text style={{ color: "black", fontSize: 14, fontWeight: "bold", }}>SETTING</Text>
+        </View>
 
-            <View style={styles.infoContainer}>
-              <Text style={{ color: "black", fontSize: 14, fontWeight: "bold", }}>SETTING</Text>
-            </View>
+        <CustomButton 
+          text="About developer"
+          onPress={onAboutUs}
+          // type="TERTIARY"
+        />
 
-            <CustomButton 
-              text="About us"
-              onPress={onAboutUs}
-              // type="TERTIARY"
-            />
-
-            <CustomButton 
-              text="Sign out"
-              onPress={onSignOut}
-              // type="TERTIARY"
-            />            
-          </View>
-        </ScrollView>
-      </ImageBackground>
-
+        <CustomButton 
+          text="Sign out"
+          onPress={onSignOut}
+          // type="TERTIARY"
+        />            
+      </View>
+    </ScrollView>
   );
 }
 

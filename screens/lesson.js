@@ -1,70 +1,48 @@
-import React from 'react';
-import { View, Text, Image, Video, ScrollView, StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
-import data from '../data/ldata1'
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import SQLite from 'react-native-sqlite-storage';
+import { WebView } from 'react-native-webview';
+import Header from '../components/Header';
 
-function RenderContent({ lesson }) {
-    return (
-        <ScrollView showsVerticalScrollIndicator={false} style={{ padding: 20, paddingBottom: 50}}>
-            <Text style={styles.title}>{lesson.title}</Text>
-            {lesson.content.map((item, index) => {
-                if (item.type === 'text') {
-                    return <Text key={index} style={styles.text}>{item.text}</Text>;
-                } else if (item.type === 'image') {
-                    return <Image key={index} source={item.image} style={styles.image} />;
-                }
-            })}
-        </ScrollView>
-    );
-}
+const LessonScreen = ({ navigation, route }) => {
+  const [lessonContent, setContent] = useState([]);
 
-const Lesson = () => {
-    const lesson = data;
-    return (
-        <SafeAreaView style={styles.container}>
-            <ImageBackground
-                source={require('../images/home.png')}
-                style={{
-                        flex: 1,
-                        justifyContent: "center"
-                }}
-                resizeMode={'cover'}
-            >
-                <RenderContent lesson={lesson} />
-            </ImageBackground>
-        </SafeAreaView>
-    );
-}
+  const { lesson } = route.params;
 
-export default Lesson;
+  useEffect(() => {
+    const db = SQLite.openDatabase({
+      name: 'grammar_v9',
+      createFromLocation : "~grammar_v9.db"
+    }, () => {
+      console.log('db connection success');
+    }, () => {
+      console.log('db connection error');
+    });
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 25,
-        margin: 10,
-        textTransform: 'uppercase',
-        fontWeight: 'bold',
-        color: "white",
-    },
-    text: {
-        fontSize: 16,
-        margin: 10,
-        color: 'black',
-    },
-    image: {
-        width: '100%',
-        height: 200,
-        margin: 10,
-        resizeMode: 'cover',
-        borderRadius: 20,
-        overflow: 'hidden',
-    },
-    video: {
-        width: '100%',
-        height: 200,
-        margin: 10,
-    },
-});
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM lesson_content WHERE lesson_id = ?", 
+        [lesson.id],
+        (tx, results) => {
+          setContent(results.rows.item(0));
+        },
+        (tx, error) => console.log('Error: ', error), 
+      );
+    });
+  }, []);
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Header title={lesson.mean} onPress={() => navigation.goBack()} iconName='chevron-circle-left' />
+      <View style={{ flex: 1, padding: 20 }}>
+        <WebView
+          source={{ html: lessonContent.content }}
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </View>
+    </View>
+  );
+};
+
+export default LessonScreen;
+
